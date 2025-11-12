@@ -407,10 +407,4 @@ public class ImageServiceImpl implements ImageService {
 		return "/images/"+savedUrl;
 	}
 
-	@Override
-	public void deleteProfileImage(String targetType, Long targetId) {
-		// TODO Auto-generated method stub
-		
-	}
-
 }
