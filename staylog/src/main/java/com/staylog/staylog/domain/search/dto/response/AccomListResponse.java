@@ -20,5 +20,5 @@ public class AccomListResponse {
     private Integer reservationCount;
 
     //대표이미지 캐러셀 여러개일 수 있음.
-    private List<String> mainImg;
+    private String imageUrl;
 }

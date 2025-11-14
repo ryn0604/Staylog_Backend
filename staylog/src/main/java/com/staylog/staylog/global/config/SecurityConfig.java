@@ -59,7 +59,6 @@ public class SecurityConfig {
                 .authorizeHttpRequests(auth -> auth
                         // 인증 없이 접근 가능한 엔드포인트 (회원가입, 로그인 등)
                         .requestMatchers(
-                                "/v2/**",
                                 "/v1/**",
                                 "/v1/auth/**",           // 인증 관련 (회원가입, 로그인)
                                 "/v1/test/**",           // 테스트 엔드포인트

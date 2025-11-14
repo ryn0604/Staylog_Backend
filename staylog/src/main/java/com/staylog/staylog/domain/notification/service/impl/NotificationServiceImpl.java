@@ -300,7 +300,7 @@ public class NotificationServiceImpl implements NotificationService {
             log.info("이미지 조회 실패 / 기본 이미지로 출력. targetType: {}, targetId: {}", targetType, targetId);
             ImageDto defaultImageDto = ImageDto.builder()
                     .targetType("IMG_FROM_ICON")
-                    .targetId(5) // null이면 기본 사람아이콘
+                    .targetId(3)
                     .build();
             return imageMapper.getMainImgByTargetTypeAndId(defaultImageDto);
         }

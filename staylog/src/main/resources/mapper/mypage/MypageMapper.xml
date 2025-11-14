@@ -63,7 +63,7 @@
         <choose>
         	<!-- 다가올 예약-->
             <when test="status == 'upcoming'">
-                AND r.status = 'RES_CONFIRMED'
+                AND r.status IN('RES_CONFIRMED', 'RES_PENDING')
                 AND r.check_in &gt; SYSDATE
             </when>
             <!-- 이용 완료 -->
@@ -150,7 +150,7 @@
                 LEFT JOIN ACCOMMODATION a ON r.accommodation_id = a.accommodation_id
                 WHERE r.user_id = #{userId}
                   AND r.board_type = 'BOARD_REVIEW'
-	                ORDER BY r.created_at DESC
+                ORDER BY r.created_at DESC
             </otherwise>
         </choose>
     </select>

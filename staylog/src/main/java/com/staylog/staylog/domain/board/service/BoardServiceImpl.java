@@ -29,10 +29,6 @@ public class BoardServiceImpl implements BoardService {
     @Override
     public BoardListResponse getByBoardType(BoardListRequest boardListRequest) {
 
-        String boardType = boardListRequest.getBoardType();
-        if (boardType == null) {
-            boardType = "BOARD_JOURNAL"; // 기본값
-        }
 
 
         // 전체 게시글 수

@@ -1,6 +1,7 @@
 package com.staylog.staylog.domain.search.service.impl;
 
 
+import com.staylog.staylog.domain.image.assembler.ImageAssembler;
 import com.staylog.staylog.domain.search.dto.request.AccomListRequest;
 import com.staylog.staylog.domain.search.dto.response.AccomListResponse;
 import com.staylog.staylog.domain.search.mapper.SearchMapper;
@@ -18,6 +19,7 @@ import java.util.stream.Collectors;
 public class SearchServiceImpl implements SearchService {
 
     private final SearchMapper searchMapper;
+    private final ImageAssembler imageAssembler;
 
     /**
      * - 1단계: 예약 가능한 숙소만 필터링
@@ -139,6 +141,7 @@ public class SearchServiceImpl implements SearchService {
                     accom.getBasePrice(),
                     accom.getReservationCount());
         }
+        imageAssembler.assembleMainImageUrl(accommodationList, AccomListResponse::getAccommodationId, AccomListResponse::setImageUrl, "ACCOMMODATION");
 
         return accommodationList;
     }

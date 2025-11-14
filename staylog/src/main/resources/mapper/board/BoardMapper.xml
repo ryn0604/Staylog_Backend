@@ -44,22 +44,22 @@
             SELECT inner_query.*, ROWNUM AS rn
             FROM (
             SELECT
-                b.board_type AS boardType,
-                b.region_code AS regionCode,
-                cc.code_name AS regionName,
-                b.board_id AS boardId,
-                b.accommodation_id AS accommodationId,
-                a.name AS accommodationName,
-                b.booking_id AS bookingId,
-                b.user_id AS userId,
-                u.nickname AS userNickName,
-                b.title,
-                b.rating,
-                b.views_count AS viewsCount,
-                TO_CHAR(b.created_at, 'YYYY-MM-DD HH24:MI:SS') AS createdAt,
-                TO_CHAR(b.updated_at, 'YYYY-MM-DD HH24:MI:SS') AS updatedAt,
-                b.likes_count AS likesCount,
-                b.deleted
+            b.board_type AS boardType,
+            b.region_code AS regionCode,
+            cc.code_name AS regionName,
+            b.board_id AS boardId,
+            b.accommodation_id AS accommodationId,
+            a.name AS accommodationName,
+            b.booking_id AS bookingId,
+            b.user_id AS userId,
+            u.nickname AS userNickName,
+            b.title,
+            b.rating,
+            b.views_count AS viewsCount,
+            TO_CHAR(b.created_at, 'YYYY-MM-DD HH24:MI:SS') AS createdAt,
+            TO_CHAR(b.updated_at, 'YYYY-MM-DD HH24:MI:SS') AS updatedAt,
+            b.likes_count AS likesCount,
+            b.deleted
 
             FROM board b
             LEFT JOIN accommodation a
@@ -184,6 +184,11 @@
             ON rm.accommodation_id = a.accommodation_id
         WHERE r.user_id = #{userId}
             AND r.check_out &lt; SYSDATE
+            AND NOT EXISTS (
+                SELECT 1
+                FROM board b
+                WHERE b.booking_id = r.booking_id )
+
     </select>
 
 
@@ -206,11 +211,13 @@
         WHERE b.board_id = #{boardId}
     </update>
 
+    <!--  좋아요 증가  -->
     <update id="increaseLikeCount" parameterType="long">
         UPDATE board SET likes_count = likes_count + 1
         WHERE board_id = #{boardId}
     </update>
 
+    <!--  좋아요 감소  -->
     <update id="decreaseLikeCount" parameterType="long">
         UPDATE board SET likes_count = likes_count - 1
         WHERE board_id = #{boardId}

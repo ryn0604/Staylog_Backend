@@ -1,10 +1,7 @@
 package com.staylog.staylog.external.toss.dto.response;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.time.OffsetDateTime;
 
@@ -13,6 +10,7 @@ import java.time.OffsetDateTime;
  * API: POST /v1/virtual-accounts
  */
 @Getter
+@Setter
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor

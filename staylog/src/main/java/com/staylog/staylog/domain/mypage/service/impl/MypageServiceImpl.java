@@ -8,8 +8,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.staylog.staylog.domain.auth.dto.EmailVerificationDto;
 import com.staylog.staylog.domain.auth.mapper.EmailMapper;
-import com.staylog.staylog.domain.image.dto.ImageDto;
-import com.staylog.staylog.domain.image.mapper.ImageMapper;
 //import com.staylog.staylog.domain.auth.service.AuthService;
 import com.staylog.staylog.domain.mypage.dto.MemberInfoDto;
 import com.staylog.staylog.domain.mypage.dto.response.BookingInfoResponse;
@@ -37,7 +35,6 @@ public class MypageServiceImpl implements MypageService {
     private final PasswordEncoder passwordEncoder;
     //private final AuthService authService;
     private final EmailMapper emailMapper;
-    private final ImageMapper imageMapper;
     
     /**
      * 회원정보 조회
@@ -54,9 +51,6 @@ public class MypageServiceImpl implements MypageService {
         	log.warn("회원 정보가 존재하지 않음: userId={}", userId);
         	throw new BusinessException(ErrorCode.USER_NOT_FOUND);
         }
-        ImageDto imageDto = ImageDto.builder().targetId(userId).targetType("IMG_FROM_PROFILE").build();
-        dto.setProfileImage("/images/"+imageMapper.getMainImgByTargetTypeAndId(imageDto));
-        log.info("프로필 이미지 확인용 image: {}", dto.getProfileImage());
         return dto;
     }
 

@@ -76,7 +76,6 @@
         LEFT JOIN room rm         ON rm.room_id = r.room_id
         LEFT JOIN accommodation a ON a.accommodation_id = rm.accommodation_id
         LEFT JOIN common_code c   ON c.code_id = r.status
-
         LEFT JOIN (
         SELECT p1.booking_id,
         p1.method,

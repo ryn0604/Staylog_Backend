@@ -1,6 +1,5 @@
 package com.staylog.staylog.domain.board.dto;
 
-import com.staylog.staylog.domain.image.dto.ImageData;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

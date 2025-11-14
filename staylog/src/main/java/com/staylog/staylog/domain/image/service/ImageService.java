@@ -49,12 +49,5 @@ public interface ImageService {
      * @return 업로드된 이미지 URL (String)
      */
     String uploadProfileImage(MultipartFile file, String targetType, Long targetId);
-    
-    /**
-     * 프로필 이미지를 삭제합니다. (변경 없음)
-     * @param targetType 이미지 타입
-     * @param targetId 사용자 ID
-     */
-    void deleteProfileImage(String targetType, Long targetId);
 
 }
